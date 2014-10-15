@@ -7,6 +7,27 @@ multiple combinable logging classes.
 Combine local logging with rolling file logging with Crashlytcs with NewRelic...
 
 
+
+Gradle
+======
+
+```groovy
+compile ('de.jodamob.android:jodamoblog:1.0') {
+    // exclude some dependencies because it was build as java not android project
+        exclude group: 'org.robolectric'
+}
+```
+
+or grab from build folder and put in your libs:
+
+```groovy
+compile files('libs/jodamoblog-1.0.jar')
+```
+
+
+Usage
+======
+
 LogCatLogger : writes to android.util.log
 
 FileLogger : writes rotating log files with java.util.logging (get content written via FileLogger.getLogFileContent() if needed)
