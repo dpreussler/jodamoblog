@@ -82,7 +82,7 @@ uploadArchives {
                 licenses {
                     license {
                         name 'The MIT License (MIT)'
-                        url 'https://github.com/dpreussler/android-gluten/blob/master/LICENSE'
+                        url 'https://github.com/dpreussler/jodamoblog/blob/master/LICENSE'
                         distribution 'repo'
                     }
                 }
