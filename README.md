@@ -51,7 +51,16 @@ Log.initLogger(
 ```
 
 
+Small helpers
+====================================
 
+check out helper classes
+
+```java
+StreamUtils.copy(inputstream, outputstream)
+
+Closeables.closeQuietly(stream1, stream2,...)
+```
 
 Licensed under MIT license
 (c) 2014 Danny Preussler
