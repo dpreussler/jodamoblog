@@ -12,7 +12,7 @@ public final class Log {
     private static Logging logger = new LogCatLogger();
     
     public static int v(String tag, String message) {
-        return android.util.Log.v(tag, message);
+        return logger.v(tag, message);
     }
 
     public static int v(String tag, String message, Throwable tr) {
