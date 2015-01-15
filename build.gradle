@@ -17,6 +17,11 @@ def getVersionName = { ->
 version = getVersionName()
 group = 'de.jodamob.android'
 
+
+configurations {
+    provided
+}
+
 repositories {
     mavenCentral()
 	maven {
@@ -28,14 +33,19 @@ dependencies {
 	testCompile 'junit:junit:4.11'
 	testCompile 'org.mockito:mockito-all:1.9.5'
     testCompile 'org.robolectric:robolectric:2.2'
-    compile 'org.robolectric:android-all:4.4_r1-robolectric-0'
-    compile 'com.newrelic.agent.android:android-agent:3.239.0'
-	compile 'com.crashlytics.android:crashlytics:1.1.5'
+    testCompile 'org.robolectric:android-all:4.4_r1-robolectric-0'
+    provided 'org.robolectric:android-all:4.4_r1-robolectric-0'
+    provided 'com.newrelic.agent.android:android-agent:3.239.0'
+	provided 'com.crashlytics.android:crashlytics:1.1.5'
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from 'build/docs/javadoc'
+}
+
+sourceSets {
+    main { compileClasspath += configurations.provided }
 }
 
 task sourcesJar(type: Jar) {
