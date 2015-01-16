@@ -12,16 +12,8 @@ Gradle
 ======
 
 ```groovy
-compile ('de.jodamob.android:jodamoblog:1.0') {
-    // exclude some dependencies because it was build as java not android project
-        exclude group: 'org.robolectric'
-}
-```
-
-or grab from build folder and put in your libs:
-
-```groovy
-compile files('libs/jodamoblog-1.0.jar')
+compile 'de.jodamob.android:jodamoblog:1.1'
+ 
 ```
 
 
