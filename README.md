@@ -12,7 +12,7 @@ Gradle
 ======
 
 ```groovy
-compile 'de.jodamob.android:jodamoblog:1.1'
+compile 'de.jodamob.android:jodamoblog:1.2.1'
  
 ```
 
