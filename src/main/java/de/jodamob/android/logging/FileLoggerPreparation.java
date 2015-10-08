@@ -20,7 +20,7 @@ class FileLoggerPreparation {
     }
 
     private File getLogDir() {
-        return new File(context.getExternalCacheDir(), FileLogger.FOLDER_NAME);
+        return new File(context.getCacheDir(), FileLogger.FOLDER_NAME);
     }
 
     private void prepare(Logger logger, File logFolder, String logpattern, String logExtention) {
@@ -32,7 +32,7 @@ class FileLoggerPreparation {
         try {
             setLoggerToFile(logger, logFolder, logpattern, logExtention);    
         } catch(IOException e) {
-            Log.wtf("LOG", e);
+            android.util.Log.e("LOG", e.toString());
         }
     }
 
