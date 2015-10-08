@@ -1,11 +1,12 @@
 package de.jodamob.android.logging;
 
+import android.content.Context;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import android.content.Context;
 
 class FileLoggerPreparation {
     
@@ -32,7 +33,7 @@ class FileLoggerPreparation {
         try {
             setLoggerToFile(logger, logFolder, logpattern, logExtention);    
         } catch(IOException e) {
-            android.util.Log.e("LOG", e.toString());
+            System.err.println(e.toString());
         }
     }
 
