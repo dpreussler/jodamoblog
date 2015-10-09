@@ -1,5 +1,7 @@
 package de.jodamob.android.logging;
 
+import android.content.Context;
+
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
@@ -7,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import android.content.Context;
+
 import de.jodamob.android.utils.Closeables;
 import de.jodamob.android.utils.StreamUtils;
 
@@ -58,7 +60,7 @@ class FileLoggerCollector {
     }
 
     private File getLogDir() {
-        return new File(context.getExternalCacheDir(), FileLogger.FOLDER_NAME);
+        return new File(context.getCacheDir(), FileLogger.FOLDER_NAME);
     }
 
     private void copyInto(OutputStream out, File file) throws FileNotFoundException, IOException {

@@ -46,7 +46,7 @@ public class FileLoggerPreparationTest {
     public void should_create_log_folder() throws IOException {
         File folder = spy(new File(""));
         when(folder.mkdirs()).thenReturn(true);
-        when(context.getExternalCacheDir()).thenReturn(folder);
+        when(context.getCacheDir()).thenReturn(folder);
         tested.prepare(logger);
         verify(folder).mkdirs();
     }
