@@ -5,10 +5,10 @@ import android.content.Context;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Arrays;
 
 import de.jodamob.android.utils.Closeables;
 import de.jodamob.android.utils.StreamUtils;
@@ -24,6 +24,12 @@ class FileLoggerCollector {
     
     final File getAsSingleLogfile() {
         return getAsSingleLogfile(getLogDir());
+    }
+
+    final File[] getFiles(File dir) {
+        File[] files = dir.listFiles(new LogFileFilter());
+        Arrays.sort(files, new FileComparator());
+        return files;
     }
 
     private final File getAsSingleLogfile(File logDir) {
@@ -45,10 +51,10 @@ class FileLoggerCollector {
     }
 
     private void writeFilesToStream(File dir, OutputStream out) throws IOException {
-        writeFileToStream(dir.listFiles(new LogFileFilter()), out);
+        writeFileToStream(getFiles(dir), out);
     }
 
-    private void writeFileToStream(File[] files, OutputStream out) throws FileNotFoundException, IOException {
+    private void writeFileToStream(File[] files, OutputStream out) throws IOException {
         if (files != null && files.length > 0) {
             for (File file : files) {
                 if (file.length() == 0) {
@@ -63,7 +69,7 @@ class FileLoggerCollector {
         return new File(context.getCacheDir(), FileLogger.FOLDER_NAME);
     }
 
-    private void copyInto(OutputStream out, File file) throws FileNotFoundException, IOException {
+    private void copyInto(OutputStream out, File file) throws IOException {
         FileInputStream in = new FileInputStream(file);
         try {
             StreamUtils.copy(in, out);
@@ -80,6 +86,14 @@ class FileLoggerCollector {
             }
             String name = path.getName();
             return name.startsWith(FileLogger.FILE_PATTERN) && name.endsWith(FileLogger.FILE_EXTENSION);
+        }
+    }
+
+    private static class FileComparator implements java.util.Comparator<File> {
+        @Override
+        public int compare(File file1, File file2) {
+            long result = file1.lastModified() - file2.lastModified();
+            return result < 0 ? -1 : result > 0 ? 1 : 0;
         }
     }
 }
